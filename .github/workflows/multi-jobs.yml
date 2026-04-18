@@ -2,6 +2,7 @@ name: Multi-Job Pipeline
 on: push
 jobs:
     build_job_1:
+        
         runs-on: ubuntu-latest
         steps:
             - name: Install Cowsay Program
@@ -13,6 +14,7 @@ jobs:
             - name: sleep for 30 seconds
               run: sleep 30
     test_job_2:
+        needs: build_job_1
         runs-on: ubuntu-latest
         steps:
           - name: sleep for 10 seconds
@@ -21,6 +23,7 @@ jobs:
           - name: Test File Exist
             run: grep -i "dragon" dragon.txt
     Deploy_job_3:
+        needs: test_job_2
         runs-on: ubuntu-latest
         steps:
           - name: Read File
