@@ -1,7 +1,7 @@
 #!/bin/sh
 sudo apt-get update
 sudo apt-get install cowsay -y
-cowsay -f dragon "Run for cover, I am DRAGON....RAWR" >> dragon.txt
+cowsay -ON....RAWR" >> dragon.txtf dragon "Run for cover, I am DRAG
 grep -i "dragon" dragon.txt
 cat dragon.txt
 ls -ltra
