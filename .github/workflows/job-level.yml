@@ -1,0 +1,32 @@
+name: job level practice
+on: push
+jobs:
+  docker:
+    runs-on: ubuntu-latest
+    env:
+        Container_Registry: docker.io
+        Docker_UserName: zareef1
+        Image_Name: myapp
+    steps:
+      - name: Docker Build
+        run: |
+          echo "docker build -t $Container_Registry/$Docker_UserName/$Image_Name"
+      - name: Docker Login
+        env:
+            Docker_Password: green@123
+        run: |
+          echo "docker login $Container_Registry -u $Docker_UserName -p Docker_Password"
+      - name: Docker Push
+        run: |
+          echo "docker push $Container_Registry/$Docker_UserName/$Image_Name"
+  deploy:
+    needs: docker
+    runs-on: ubuntu-latest
+    env:
+        Container_Registry: docker.io
+        Docker_UserName: zareef1
+        Image_Name: myapp
+    steps:
+      - name: Run Container
+        run: |
+          echo "run container $Container_Registry/$Docker_UserName/$Image_Name"                            
